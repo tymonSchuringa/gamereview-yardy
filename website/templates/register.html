@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Game Reviews - Game Review Website{% endblock %}
+
+{% block content %}
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay"></div>
+    <img src="{{ url_for('static', filename='background5.jpg') }}" alt="Gaming Background" class="hero-bg">
+    <div class="hero-section d-flex align-items-center" style="height: 100vh; background: url('your-bg.jpg') no-repeat center center; background-size: cover;">
+      <div class="container">
+        <div class="p-5 rounded-4 shadow text-center mx-auto" style="background-color: rgba(255, 255, 255, 0.9); max-width: 700px;">
+          <h1 class="display-4 fw-bold mb-3 text-dark">Register</h1>
+          <p class="lead fw-semibold text-dark mb-4">Create your account to join the gaming community</p>
+
+<form method="POST" action="{{ url_for('routes.register') }}">
+  {{ form.hidden_tag() }}
+  <!-- rest van form -->
+
+            <form method="POST" action="{{ url_for('routes.register') }}">
+              {{ form.hidden_tag() }} 
+
+              <div class="form-group">
+                {{ form.username.label(class="text-dark") }}
+                {{ form.username(class="form-control", id="username") }}
+              </div>
+              
+              <div class="form-group">
+                {{ form.email.label(class="text-dark") }}
+                {{ form.email(class="form-control", id="email") }}
+              </div>
+
+              <div class="form-group">
+                {{ form.password.label(class="text-dark") }}
+                {{ form.password(class="form-control", id="password") }}
+              </div>
+
+              <div class="form-group">
+                {{ form.confirm_password.label(class="text-dark") }}
+                {{ form.confirm_password(class="form-control", id="confirm_password") }}
+              </div>
+
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="terms" name="terms" required>
+                <label class="form-check-label text-dark" for="terms">I agree to the <a href="{{ url_for('routes.terms') }}">Terms of Service</a></label>
+              </div>
+
+              {{ form.submit(class="btn btn-danger btn-lg mt-4") }}
+            </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Game Reviews - Game Review Website{% endblock %}
+
+{% block content %}
+
+  <section class="hero">
+    <div class="overlay"></div>
+    <img src="{{ url_for('static', filename='background5.jpg') }}" alt="Gaming Background" class="hero-bg">
+
+    <!-- Social Icons -->
+
+    <!-- Hero Content -->
+    <div class="hero-section d-flex align-items-center" 
+      style="height: 100vh; background: url('your-bg.jpg') no-repeat center center; background-size: cover;">
+    <div class="container">
+      <div class="p-5 rounded-4 shadow text-center mx-auto" style="background-color: rgba(255, 255, 255, 0.9); max-width: 700px;">
+        <h1 class="display-4 fw-bold mb-3 text-dark">
+          Welkom terug!
+        </h1>
+        <p class="lead fw-semibold text-dark mb-4">
+          Veel plezier op deze site!
+        </p>
+
+      </div>
+    </div>
+    </div>
+
+  </section>
+{% endblock %}
+
+

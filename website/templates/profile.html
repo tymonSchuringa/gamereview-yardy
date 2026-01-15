@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}profile - Game Review Website{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Profiel van {{ user.username }}</title>
+    <style>
+        body {
+            background: url("{{ url_for('static', filename='background5.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .profile-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 80px);
+            padding-top: 80px; 
+        }
+
+        main {
+            background-color: rgba(0, 0, 0, 0.75);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        nav.profile-links {
+            margin-bottom: 20px;
+        }
+
+        nav.profile-links a {
+            color: #00aced;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        nav.profile-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-wrapper">
+        <main>
+            <nav class="profile-links">
+                <a href="{{ url_for('routes.dashboard') }}">Dashboard</a> |
+                <a href="{{ url_for('routes.settings') }}">Instellingen</a> |
+                <a href="{{ url_for('routes.logout') }}">Uitloggen</a>
+            </nav>
+
+            <h1>Welkom, {{ user.username }}!</h1>
+            <p><strong>Gebruikersnaam:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+        </main>
+    </div>
+</body>
+</html>
+{% endblock %}
+

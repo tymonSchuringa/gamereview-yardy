@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Contact - Game Review Website{% endblock %}
+
+{% block content %}
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay"></div>
+    <img src="{{ url_for('static', filename='background5.jpg') }}" alt="Gaming Background" class="hero-bg">
+
+    <!-- Hero Content -->
+    <div class="hero-section d-flex align-items-center" style="height: 100vh; background: url('your-bg.jpg') no-repeat center center; background-size: cover;">
+      <div class="container">
+        <div class="p-5 rounded-4 shadow text-center mx-auto" style="background-color: rgba(255, 255, 255, 0.75); max-width: 700px;">
+          <h1 class="display-4 fw-bold mb-3 text-dark">Neem contact met ons op</h1>
+          <p class="lead fw-semibold text-dark mb-4">Heb je vragen of opmerkingen? Vul onderstaand formulier in en we nemen zo snel mogelijk contact met je op.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contactgegevens Section -->
+  <section class="contact-details py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h4>Onze contactgegevens</h4>
+          <p><strong>Game Review Website</strong><br>Straatnaam 123<br>1234 AB Stad<br>Nederland</p>
+          <p><strong>Telefoon:</strong> <a href="tel:+31123456789">+31 123 456 789</a></p>
+          <p><strong>E-mail:</strong> <a href="mailto:info@gamereview.nl">info@gamereview.nl</a></p>
+        </div>
+        <div class="col-md-6">
+          <h4>Stuur ons een bericht</h4>
+          <form action="{{ url_for('routes.contact') }}" method="POST">
+            <div class="mb-3">
+              <label for="name" class="form-label">Naam <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Je naam" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">E-mailadres <span class="text-danger">*</span></label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Je e-mailadres" required>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Bericht</label>
+              <textarea class="form-control" id="message" name="message" rows="5" placeholder="Je bericht"></textarea>
+            </div>
+            <button type="submit" class="btn btn-danger">Verstuur bericht</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+

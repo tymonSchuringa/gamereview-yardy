@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Game Reviews - Game Review Website{% endblock %}
+
+{% block content %}
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay"></div>
+    <img src="{{ url_for('static', filename='background5.jpg') }}" alt="Gaming Background" class="hero-bg">
+
+    <!-- Hero Content -->
+    <div class="hero-section d-flex align-items-center" 
+      style="height: 100vh; background: url('your-bg.jpg') no-repeat center center; background-size: cover;">
+    <div class="container">
+      <div class="p-5 rounded-4 shadow text-center mx-auto" style="background-color: rgba(255, 255, 255, 0.9);">
+        <h1 class="display-4 fw-bold mb-3 text-dark">
+          Over ons
+        </h1>
+        <p class="lead fw-semibold text-dark mb-4">
+          Welkom op Gamereview! Wij zijn een groep ICT-studenten met een passie voor gamen. 
+          Deze website hebben we gemaakt als schoolproject, maar ook omdat we zelf graag games spelen en het hierover willen hebben. 
+          Op Gamereview kan iedereen zijn of haar mening geven over games, zonder censuur. 
+          Zo kun je jouw nieuwe favourite game vinden.  
+          Daarnaast willen we met deze site een community opbouwen waar gamers elkaar kunnen ontmoeten en  
+          tips delen. 
+        </p>
+            <div class="stats">
+      <div class="stat-item">
+        <span class="stat-number">5+</span>
+        <span class="stat-label">Reviewde games</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">1</span>
+        <span class="stat-label">Bezoeker(s)</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">2025</span>
+        <span class="stat-label">Opgericht</span>
+      </div>
+    </div>
+      </div>
+    </div>
+    </div>
+
+  </section>
+{% endblock %}

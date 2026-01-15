@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Beheer Reviews</h2>
+    
+    {% for review in reviews.items %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Review voor {{ review.game.title }}</h5>
+            <p class="card-text">{{ review.content }}</p>
+            <p>Rating: {{ review.rating }}/5</p>
+            <p>Geplaatst door: {{ review.user.username }} op {{ review.date_posted.strftime('%d-%m-%Y') }}</p>
+            
+            <div class="admin-actions">
+                <a href="{{ url_for('routes.edit_review_admin', review_id=review.id) }}" class="btn btn-sm btn-warning">Bewerken</a>
+                <form method="POST" action="{{ url_for('routes.delete_review_admin', review_id=review.id) }}" style="display: inline;">
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Weet je zeker dat je deze review wilt verwijderen?')">Verwijderen</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    
+    {% for page_num in reviews.iter_pages() %}
+        {% if page_num %}
+            <a href="{{ url_for('routes.manage_reviews', page=page_num) }}" class="btn btn-outline-info mb-4">{{ page_num }}</a>
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

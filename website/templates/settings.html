@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Instellingen{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <h2 class="mb-4">Accountinstellingen</h2>
+
+  <!-- Andere instellingen hier... -->
+
+  <hr class="my-4">
+
+  <!-- Account verwijderen -->
+  {% if current_user.is_authenticated %}
+  <div class="mt-5">
+    <h4 class="text-danger">Account verwijderen</h4>
+    <p>Let op: Dit verwijdert je account permanent. Deze actie kan niet ongedaan worden gemaakt.</p>
+    <form method="POST" action="{{ url_for('routes.delete_account') }}" onsubmit="return confirm('Weet je zeker dat je je account wilt verwijderen? Deze actie kan niet ongedaan worden.');">
+      <button type="submit" class="btn btn-outline-danger">Verwijder mijn account</button>
+    </form>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

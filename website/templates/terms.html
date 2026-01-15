@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Terms of Service - Game Review Website{% endblock %}
+
+{% block content %}
+  <section class="hero position-relative">
+    <div class="overlay position-absolute top-0 start-0 w-100 h-100" style="z-index: -1;"></div>
+    <img src="{{ url_for('static', filename='background5.jpg') }}" alt="Gaming Background" class="hero-bg position-absolute top-0 start-0 w-100 h-100" style="object-fit: cover; z-index: -2;">
+
+    <div class="hero-section py-5">
+      <div class="container">
+        <div class="p-5 rounded-4 shadow text-dark mx-auto" style="background-color: rgba(255, 255, 255, 0.9); max-width: 700px;">
+          <h1 class="mb-4">Terms of Service</h1>
+          <p>Bij gebruik van onze website ben je het eens met de volgende punten:</p>
+
+          <h3 class="mt-4">1. Gebruik</h3>
+          <p>Je mag geen discriminatie uitoefenen op onze website.</p>
+
+          <h3 class="mt-4">2. Account</h3>
+          <p>Je bent zelf verantwoordelijk voor het beheren van je account.</p>
+
+          <h3 class="mt-4">3. Van ons</h3>
+          <p>Alles op onze website is van ons.</p>
+
+          <h3 class="mt-4">4. Gebruikersvriendelijk</h3>
+          <p>Behandel anderen met respect en wees vriendelijk.</p>
+
+          <h3 class="mt-4">5. Limitatie</h3>
+          <p>We bieden eerlijke en objectieve informatie. We proberen ons best, maar we zijn ook mensen.</p>
+
+          <h3 class="mt-4">6. Veranderingen</h3>
+          <p>We kunnen deze voorwaarden op elk moment aanpassen. Blijf op de hoogte door deze pagina te bezoeken.</p>
+
+          <p class="mt-5">Heb je vragen? Neem contact met ons op via: <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Contactpagina</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

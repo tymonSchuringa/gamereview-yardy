@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}{{ game_name }} - Game Review{% endblock %}
+
+{% block content %}
+<style>
+  .rating-badge {
+    font-weight: bold;
+    font-size: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    display: inline-block;
+  }
+
+  .rating-green {
+    color: green;
+  }
+
+  .rating-orange {
+    color: orange;
+  }
+
+  .rating-red {
+    color: red;
+  }
+
+  .review-box {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    background-color: #f8f9fa;
+  }
+
+  .steam-review {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .game-background {
+    background: url("{{ url_for('static', filename='background5.jpg') }}") no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+  }
+</style>
+
+<section class="py-5 game-background">
+
+  <div class="container">
+    <div class="p-5 rounded-4 shadow text-center mx-auto" style="background-color: rgba(255, 255, 255, 0.9);">
+
+    <!-- Game hoofd -->
+    <div class="text-center mb-5">
+      <h1 class="display-4">{{ game_name }}</h1>
+      <img src="{{ image_url }}" alt="{{ game_name }} banner" class="img-fluid rounded shadow" style="max-height: 300px;">
+      <div class="mt-3">
+        <h4>Steam beoordeling:</h4>
+        <span class="rating-badge 
+          {% if rating_color == 'green' %}rating-green
+          {% elif rating_color == 'orange' %}rating-orange
+          {% elif rating_color == 'red' %}rating-red
+          {% endif %}">
+          {{ positive_pct }}% positief
+        </span>
+      </div>
+    </div>
+
+    <!-- Gebruikersreviews + reviewformulier -->
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Gebruikersreviews</h3>
+        {% if reviews %}
+          {% for review in reviews %}
+            <div class="review-box">
+              <strong>{{ review.username }}</strong><br>
+              {{ review.review }}
+              
+              <!-- Eigenaar of admin mag bewerken/verwijderen -->
+              {% if current_user.is_authenticated and (review.username == current_user.username or current_user.is_admin) %}
+                <div class="mt-2">
+                  <a href="{{ url_for('routes.edit_review', game_id=game_id, username=review.username) }}" class="btn btn-sm btn-outline-primary">Bewerk</a>
+                  <form action="{{ url_for('routes.delete_review', game_id=game_id, username=review.username) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-outline-danger">Verwijder</button>
+                  </form>
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>Er zijn nog geen gebruikersreviews voor deze game.</p>
+        {% endif %}
+      </div>
+
+      <div class="col-md-6">
+        <h3>Laat een review achter</h3>
+        {% if current_user.is_authenticated %}
+          {% if not has_reviewed %}
+            <form method="POST" action="{{ url_for('routes.add_review', game_id=game_id) }}">
+              <div class="mb-3">
+                <label for="review" class="form-label">Review</label>
+                <textarea class="form-control" id="review" name="review" rows="4" placeholder="Je review..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-danger">Verstuur review</button>
+            </form>
+          {% else %}
+            <p>Je hebt al een review geplaatst voor deze game.</p>
+          {% endif %}
+        {% else %}
+          <p><a href="{{ url_for('routes.login') }}">Log in</a> om een review achter te laten.</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Stoom reviews -->
+    <hr class="my-5">
+    <div class="mt-5">
+      <h3>Steam Reviews</h3>
+      {% if steam_reviews %}
+        {% for review in steam_reviews %}
+          <div class="steam-review">
+            <strong>Steam gebruiker:</strong> {{ review.author }}<br>
+            <em>{% if review.voted_up %}👍 Positief{% else %}👎 Negatief{% endif %}</em><br>
+            {{ review.review }}
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>Geen Steam reviews gevonden.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}
